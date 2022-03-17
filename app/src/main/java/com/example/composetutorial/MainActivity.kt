@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-data class Message(val a: String, val b: String)
+data class Message(val title: String, val body: String)
 
 @Composable
 fun Greeting(msg : Message) {
@@ -60,7 +60,7 @@ fun Greeting(msg : Message) {
         Spacer(modifier = Modifier.width(8.dp))
         Column {
 
-            Text(text = "${msg.a}!",
+            Text(text = "${msg.title}!",
             color = MaterialTheme.colors.secondaryVariant,
                 style = MaterialTheme.typography.subtitle2
             )
@@ -70,7 +70,7 @@ fun Greeting(msg : Message) {
             Surface(shape = MaterialTheme.shapes.medium, elevation = 1.dp)
              {
             Text(
-                text = "${msg.b}!",
+                text = "${msg.body}!",
                 Modifier.padding(all = 4.dp),
                 style = MaterialTheme.typography.body2
             )

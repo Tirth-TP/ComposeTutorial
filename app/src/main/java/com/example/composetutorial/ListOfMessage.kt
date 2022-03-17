@@ -58,7 +58,7 @@ fun MessageCard(msg: Message) {
         // We toggle the isExpanded variable when we click on this Column
         Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
             Text(
-                text = msg.a,
+                text = msg.title,
                 color = MaterialTheme.colors.secondaryVariant,
                 style = MaterialTheme.typography.subtitle2
             )
@@ -70,7 +70,7 @@ fun MessageCard(msg: Message) {
                 elevation = 1.dp,
             ) {
                 Text(
-                    text = msg.b,
+                    text = msg.body,
                     modifier = Modifier.padding(all = 4.dp),
                     // If the message is expanded, we display all its content
                     // otherwise we only display the first line
