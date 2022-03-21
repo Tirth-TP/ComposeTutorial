@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -62,9 +63,9 @@ fun MessageCard(msg: Message) {
                     painter = painterResource(R.drawable.image),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(40.dp)
                         .clip(CircleShape)
-                        .border(2.dp, MaterialTheme.colors.secondary, CircleShape)
+                        .border(1.5.dp, MaterialTheme.colors.secondary, CircleShape)
                 )
 
             } else {
@@ -99,6 +100,10 @@ fun MessageCard(msg: Message) {
             Surface(
                 shape = MaterialTheme.shapes.medium,
                 elevation = 1.dp,
+                // surfaceColor color will be changing gradually from primary to surface
+                color = MaterialTheme.colors.surface,
+                // animateContentSize will change the Surface size gradually
+                modifier = Modifier.animateContentSize().padding(1.dp)
             ) {
                 Text(
                     text = msg.body,
