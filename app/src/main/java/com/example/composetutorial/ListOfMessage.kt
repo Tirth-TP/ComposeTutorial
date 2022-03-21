@@ -41,28 +41,59 @@ class ListOfMessage : ComponentActivity() {
 @Composable
 fun MessageCard(msg: Message) {
     Row(modifier = Modifier.padding(all = 8.dp)) {
-        Image(
-            painter = painterResource(R.drawable.image),
-            contentDescription = null,
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .border(1.5.dp, MaterialTheme.colors.secondaryVariant, CircleShape)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
+//        Image(
+//            painter = painterResource(R.drawable.image),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .size(40.dp)
+//                .clip(CircleShape)
+//                .border(1.5.dp, MaterialTheme.colors.secondaryVariant, CircleShape)
+//        )
+//        Spacer(modifier = Modifier.width(8.dp))
 
         // We keep track if the message is expanded or not in this
         // variable
         var isExpanded by remember { mutableStateOf(false) }
 
         // We toggle the isExpanded variable when we click on this Column
-        Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
-            Text(
-                text = msg.title,
-                color = MaterialTheme.colors.secondaryVariant,
-                style = MaterialTheme.typography.subtitle2
-            )
+        Row(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
+            if (isExpanded) {
+                Image(
+                    painter = painterResource(R.drawable.image),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(100.dp)
+                        .clip(CircleShape)
+                        .border(2.dp, MaterialTheme.colors.secondary, CircleShape)
+                )
 
+            } else {
+                Image(
+                    painter = painterResource(R.drawable.image),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .border(1.5.dp, MaterialTheme.colors.secondaryVariant, CircleShape)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.width(8.dp))
+        Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
+            if (isExpanded){
+                Text(
+                    text = msg.title,
+                    color = MaterialTheme.colors.secondary,
+                    style = MaterialTheme.typography.subtitle2
+                )
+            }else {
+                Text(
+                    text = msg.title,
+                    color = MaterialTheme.colors.secondaryVariant,
+                    style = MaterialTheme.typography.subtitle2
+                )
+            }
             Spacer(modifier = Modifier.height(4.dp))
 
             Surface(
