@@ -28,11 +28,17 @@ import com.example.composetutorial.ui.theme.ComposeTutorialTheme
  * Created by Tirth Patel.
  */
 class ListOfMessage : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContent {
             ComposeTutorialTheme {
-                Conversation(messages = SampleData.conversationSample)
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Conversation(SampleData.conversationSample)
+//                    Text(text = "Hello")
+                }
             }
         }
 
@@ -103,7 +109,9 @@ fun MessageCard(msg: Message) {
                 // surfaceColor color will be changing gradually from primary to surface
                 color = MaterialTheme.colors.surface,
                 // animateContentSize will change the Surface size gradually
-                modifier = Modifier.animateContentSize().padding(1.dp)
+                modifier = Modifier
+                    .animateContentSize()
+                    .padding(1.dp)
             ) {
                 Text(
                     text = msg.body,
@@ -127,13 +135,16 @@ fun Conversation(messages: List<Message>) {
     }
 }
 
+@Composable
+
+
 @Preview
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
     name = "Dark Mode"
 )
-@Composable
+
 fun PreviewConversation() {
     ComposeTutorialTheme {
         Conversation(SampleData.conversationSample)
