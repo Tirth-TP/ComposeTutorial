@@ -136,8 +136,6 @@ fun Conversation(messages: List<Message>) {
 }
 
 @Composable
-
-
 @Preview
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
